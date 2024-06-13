@@ -1,11 +1,7 @@
 package oopproject1.commands;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 import oopproject1.admin.KafkaCluster;
 
@@ -22,10 +18,6 @@ public abstract class CliCommand {
 
     public String getName() {
         return name;
-    }
-
-    private String getDescription() {
-        return description;
     }
 
     // METHODS

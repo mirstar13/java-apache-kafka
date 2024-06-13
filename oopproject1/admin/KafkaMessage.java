@@ -9,12 +9,10 @@ public abstract class KafkaMessage {
         this.ingestionTime = System.currentTimeMillis();
     }
 
+    // GETTERS
+
     public long getIngestionTime() {
         return ingestionTime;
-    }
-
-    private void setIngestionTime(long ingestionTime) {
-        this.ingestionTime = ingestionTime;
     }
 }
 

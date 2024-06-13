@@ -34,10 +34,6 @@ public class KafkaPartition {
 		this.messageQueue = messageQueue;
 	}
 
-	private long getDEFAULT_OFFSET() {
-		return DEFAULT_OFFSET;
-	}
-
 	protected long getOffset() {
 		return offset;
 	}
@@ -52,9 +48,5 @@ public class KafkaPartition {
 
 	private void setReplicas(ArrayList<KafkaReplica> replicas) {
 		this.replicas = replicas;
-	}
-
-	private int getDEFAULT_NUM_REPLICAS() {
-		return DEFAULT_NUM_REPLICAS;
 	}
 }

@@ -11,6 +11,7 @@ public class KafkaReplica {
 	}
 
 	// GETTERS AND SETTERS
+	
 	protected KafkaBroker getBroker() {
 		return broker;
 	}

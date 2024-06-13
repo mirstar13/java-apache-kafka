@@ -1,6 +1,5 @@
 package oopproject1.admin;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,8 @@ public class KafkaConsumer extends KafkaClient {
 	}
 
 	@Override
-	public List<KafkaMessage> receiveMessage(int consumerIndex) {
+	@SuppressWarnings("unchecked")
+	public <K,V> List<KafkaMessage> receiveMessage(int consumerIndex) {
 		KafkaTopic topic = this.getTopic();
 		
 		List<List<Integer>> partitionDistribution = topic.getPartitionDistribution();
@@ -39,18 +39,16 @@ public class KafkaConsumer extends KafkaClient {
 			currentPartition.setOffset(partitionOffset+1);
 
 			if (message instanceof KafkaKeyedMessage) {
-				KafkaKeyedMessage keyedMessage = (KafkaKeyedMessage) message;
+				KafkaKeyedMessage<K,V> keyedMessage = (KafkaKeyedMessage<K,V>) message;
 				
 				if (keyedMessage != null) {
-					System.out.println("recieved message: " + keyedMessage.getIngestionTime() + " key: " + keyedMessage.getKey() + " value: " + keyedMessage.getValue());
 					messages.add(keyedMessage);
 				}
 
 			} else {
-				KafkaNonKeyedMessage nonKeyedMessage = (KafkaNonKeyedMessage) message;
+				KafkaNonKeyedMessage<V> nonKeyedMessage = (KafkaNonKeyedMessage<V>) message;
 
 				if (nonKeyedMessage != null) {
-					System.out.println("recieved message: " + nonKeyedMessage.getIngestionTime() + " value: " + nonKeyedMessage.getValue());
 					messages.add(nonKeyedMessage);
 				}
 			}

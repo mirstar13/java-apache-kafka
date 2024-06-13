@@ -1,11 +1,7 @@
 package oopproject1.admin;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 public class KafkaProducer extends KafkaClient {
 	private int messageCount;
@@ -26,7 +22,6 @@ public class KafkaProducer extends KafkaClient {
 			this.getTopic().getPartitions().get(messageCount % this.getTopic().getPartitions().size()).getMessageQueue().add(kafkaMessage);
 			messageCount++;
 
-			System.out.println("Sent message " + value);
 			return;
 		}
 
@@ -34,12 +29,10 @@ public class KafkaProducer extends KafkaClient {
 
 		String strKey = (String) key;
 		this.getTopic().getPartitions().get(hash(strKey, this.getTopic().getPartitions().size())).getMessageQueue().add(kafkaMessage);
-
-		System.out.println("Sent message with key " + key + " and value\n" + value);
 	}
 
 	@Override
-	public List<KafkaMessage> receiveMessage(int consumerIndex) {
+	public <K,V> List<KafkaMessage> receiveMessage(int consumerIndex) {
 		String message = "Error. Producers don't receive messages";
 		List<KafkaMessage> messages = new ArrayList<>();
 		messages.add(new KafkaNonKeyedMessage<String>(message));

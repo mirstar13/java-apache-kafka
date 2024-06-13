@@ -3,35 +3,30 @@ package oopproject1.data;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 // Container Class that stores the data extracted from the chosen file
-public class FileData {
+public class RecordsFile {
     private List<String> headers;
     private List<List<String>> dataTable;
 
-    public FileData(List<String> headersMap, List<List<String>> dataTable) {
+    public RecordsFile(List<String> headersMap, List<List<String>> dataTable) {
         this.headers = headersMap;
         this.dataTable = dataTable;
     }
 
+    // GETTERS
+
     public List<String> getHeaders() {
         return headers;
-    }
-
-    public void setHeaders(List<String> headersMap) {
-        this.headers = headersMap;
     }
 
     public List<List<String>> getDataTable() {
         return dataTable;
     }
 
-    public void setDataTable(List<List<String>> dataTable) {
-        this.dataTable = dataTable;
-    }
+    // METHODS
 
     public String toString(int index) {
         String result = "";
@@ -48,7 +43,7 @@ public class FileData {
         return result;
     }
 
-    public static FileData readFile(String fileName) {
+    public static RecordsFile readFile(String fileName) {
         String workingDirectory = System.getProperty("user.dir");
         String pathToData = "oopproject1" + File.separator + "data";
         String absoluteFilePath = "";
@@ -86,7 +81,7 @@ public class FileData {
             }
 
             fileReader.close();
-            return new FileData(headersList, dataTable);
+            return new RecordsFile(headersList, dataTable);
         } catch (FileNotFoundException e) {
             System.out.println("File " + absoluteFilePath + " not found");
             return null;

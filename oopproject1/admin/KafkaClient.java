@@ -5,6 +5,8 @@ import java.util.List;
 abstract public class KafkaClient {
 	private KafkaTopic topic;
 
+	// GETTERS AND SETTERS
+
 	public KafkaClient(KafkaTopic topic) {
 		this.topic = topic;
 	}
@@ -13,14 +15,10 @@ abstract public class KafkaClient {
 		return topic;
 	}
 
-	private void setTopic(KafkaTopic topic) {
-		this.topic = topic;
-	}
-
 	// METHODS
-
+	
 	abstract <K,V> void sendMessage(K key, V value);
 
-	abstract List<KafkaMessage> receiveMessage(int consumerIndex);
+	abstract <K,V> List<KafkaMessage> receiveMessage(int consumerIndex);
 
 }

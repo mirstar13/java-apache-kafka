@@ -1,16 +1,9 @@
 package oopproject1.commands;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 import oopproject1.admin.KafkaCluster;
-import oopproject1.admin.KafkaProducer;
-import oopproject1.admin.KafkaTopic;
-import oopproject1.data.FileData;
+import oopproject1.data.RecordsFile;
 
 public class CommandTest extends CliCommand {
     protected CommandTest() {
@@ -18,7 +11,7 @@ public class CommandTest extends CliCommand {
     }
 
     public void callback(KafkaCluster cluster, List<String> params) {
-        FileData dat = FileData.readFile("unsortedAISTruncated.txt");
+        RecordsFile dat = RecordsFile.readFile("unsortedAISTruncated.txt");
 
         System.out.println(dat.getHeaders().get(8));
     }

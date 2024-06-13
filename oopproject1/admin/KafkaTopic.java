@@ -2,7 +2,6 @@ package oopproject1.admin;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class KafkaTopic {
 
@@ -18,6 +17,7 @@ public class KafkaTopic {
 	private int consumerCount;
 	private int maxProducers;
 	private int maxConsumers;
+	private int availableMessages;
 
 	private static final int DEFAULT_REPLICATION_FACTOR = 1;
 	private static final boolean DEFAULT_KEYED = false;
@@ -63,11 +63,21 @@ public class KafkaTopic {
 		this.consumers = new KafkaConsumer[KafkaTopic.DEFAULT_MAX_CONSUMERS];
 		this.maxProducers = KafkaTopic.DEFAULT_MAX_PRODUCERS;
 		this.maxConsumers = KafkaTopic.DEFAULT_MAX_CONSUMERS;
+		this.replicationFactor = KafkaTopic.DEFAULT_REPLICATION_FACTOR;
+		this.keyed = KafkaTopic.DEFAULT_KEYED;
 		this.owner = owner;
 		this.partitionDistribution = distributePartitions(numPartitions, this.consumerCount);
 	}
 
 	// GETTERS & SETTERS
+
+	public int getAvailableMessages() {
+		return availableMessages;
+	}
+
+	private void setAvailableMessage(int availableMessages) {
+		this.availableMessages = availableMessages;
+	}
 
 	protected List<List<Integer>> getPartitionDistribution() {
 		return partitionDistribution;
@@ -143,23 +153,7 @@ public class KafkaTopic {
 
 	private void setConsumerCount(int consumerCount) {
 		this.consumerCount = consumerCount;
-	}
-
-	private int getDEFAULT_REPLICATION_FACTOR() {
-		return DEFAULT_REPLICATION_FACTOR;
-	}
-
-	private boolean isDEFAULT_KEYED() {
-		return DEFAULT_KEYED;
-	}
-
-	private int getDEFAULT_MAX_PRODUCERS() {
-		return DEFAULT_MAX_PRODUCERS;
-	}
-
-	private int getDEFAULT_MAX_CONSUMERS() {
-		return DEFAULT_MAX_CONSUMERS;
-	}
+	}	
 
 	// METHODS
 

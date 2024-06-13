@@ -76,7 +76,7 @@ public class KafkaBroker {
 		this.maxTopics = maxTopics;
 	}
 
-	// methods
+	// METHODS
 
 	public boolean isValidPort(int port) {
 		if (port < 0 || port > 65535)

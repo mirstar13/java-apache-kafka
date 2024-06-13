@@ -5,7 +5,7 @@ import java.util.List;
 import oopproject1.admin.KafkaCluster;
 import oopproject1.admin.KafkaProducer;
 import oopproject1.admin.KafkaTopic;
-import oopproject1.data.FileData;
+import oopproject1.data.RecordsFile;
 
 public class CommandInsert extends CliCommand {
     public CommandInsert() {
@@ -25,13 +25,14 @@ public class CommandInsert extends CliCommand {
         String keyColumn = "";
         
         KafkaTopic topic = cluster.findTopicByName(topicName);
-        KafkaProducer[] producers = topic.getProducers();
-        FileData dat = FileData.readFile(fileName);
-
-        int messagePerProducer = dat.getDataTable().size()/producers.length;
-        // int remainder = dat.getDataTable().size() % topic.getProducers().length;
-
+        
         if (topic != null) {
+            KafkaProducer[] producers = topic.getProducers();
+            RecordsFile dat = RecordsFile.readFile(fileName);
+    
+            int messagePerProducer = dat.getDataTable().size()/producers.length;
+            int remainder = dat.getDataTable().size() % topic.getProducers().length;
+
             if(topic.isKeyed()) {
                 if (params.size() < 3) {
                     System.out.println(getName() + ": you must specify the name of the key column for keyed topics");
@@ -44,9 +45,16 @@ public class CommandInsert extends CliCommand {
                     for (int i = 0; i < messagePerProducer; i++) {
                         producer.sendMessage(keyColumn, dat.toString(offset + i));
                     }
-                    offset += messagePerProducer-1;
+                    offset += messagePerProducer;
+
+                    if (remainder >= 1) {
+                        producer.sendMessage(keyColumn, dat.toString(++offset));
+                        remainder--;
+                    }
                 }
             }
+            
+            return;
         }    
 
         System.out.println("Topic not found");

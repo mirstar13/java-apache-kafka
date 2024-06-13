@@ -1,7 +1,6 @@
 package oopproject1.admin;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class KafkaCluster {
