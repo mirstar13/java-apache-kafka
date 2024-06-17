@@ -11,7 +11,7 @@ import oopproject1.utilities.Globals;
 public class CommandInsert extends CliCommand {
     protected CommandInsert() {
         super("insert",
-                "Insert a new file to a topic.\n         Usage: insert <FILE_NAME> <TOPIC_NAME> <KEY_COLUMN_NAME>. Key column name should be specified only if the chosen topic is a keyed topic, otherwise it will be ignored.");
+                "Insert a new file to a topic.\n\tUsage: insert <FILE_NAME> <TOPIC_NAME> <KEY_COLUMN_NAME>.\n\tKey column name should be specified only if the chosen topic is a keyed topic, otherwise it will be ignored.");
     }
 
     @Override

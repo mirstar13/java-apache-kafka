@@ -5,8 +5,10 @@ import java.util.Random;
 
 public class KafkaCluster {
 
+	public static int DEFAULT_MAX_BROKERS = 10;
+	public static int DEFAULT_MAX_TOPICS_PER_BROKER = 5;
+	
 	private ArrayList<KafkaBroker> brokers;
-	private static int DEFAULT_MAX_BROKERS;
 	private int brokerCount;
 	private int maxBrokers;
 	private int maxTopicsPerBroker;
@@ -17,7 +19,6 @@ public class KafkaCluster {
 		this.brokerCount = 0;
 
 		this.brokers = new ArrayList<>(maxBrokers);
-
 	}
 
 	// getters & setters
@@ -27,14 +28,6 @@ public class KafkaCluster {
 
 	private void setBrokers(ArrayList<KafkaBroker> brokers) {
 		this.brokers = brokers;
-	}
-
-	private int getDEFAULT_MAX_BROKERS() {
-		return DEFAULT_MAX_BROKERS;
-	}
-
-	private void setDEFAULT_MAX_BROKERS(int dEFAULT_MAX_BROKERS) {
-		DEFAULT_MAX_BROKERS = dEFAULT_MAX_BROKERS;
 	}
 
 	private int getBrokerCount() {
@@ -181,9 +174,9 @@ public class KafkaCluster {
 		chosenBroker.addTopic(topic);
 	}
 
-	public void deleteTopic(String topicName) {
+	public boolean deleteTopic(String topicName) {
 		boolean topicDeleted = false; // Track if topic is deleted from any broker
-		for (int i = 0; i < brokerCount; i++) {
+		outer: for (int i = 0; i < brokerCount; i++) {
 			KafkaBroker broker = brokers.get(i);
 			if (broker != null) {
 				ArrayList<KafkaTopic> topics = broker.getTopics();
@@ -191,17 +184,20 @@ public class KafkaCluster {
 					KafkaTopic topic = topics.get(j);
 					if (topic != null && topic.getName().equals(topicName)) {
 						broker.removeTopic(topicName);
-						topicDeleted = true; // Set flag to true if topic is deleted
-						break; // Exit inner loop once topic is found and deleted
+						topicDeleted = true;
+						break outer; 
 					}
 				}
 			}
 		}
+
 		if (topicDeleted) {
 			System.out.println("Topic with name " + topicName + " deleted from the KafkaCluster");
 		} else {
 			System.out.println("Topic with name " + topicName + " not found in any broker");
 		}
+
+		return topicDeleted;
 	}
 
 	public KafkaTopic findTopicByName(String topicName) {

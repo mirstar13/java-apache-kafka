@@ -37,6 +37,7 @@ public abstract class CliCommand {
         m.put("test", new CommandTest());
         m.put("complete", new CommandComplete());
         m.put("show", new CommandShow());
+        m.put("gui", new CommandGUI());
 
         return m;
     }

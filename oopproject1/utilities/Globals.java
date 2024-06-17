@@ -9,6 +9,8 @@ public class Globals {
     public static final String cliPrompt = "Apache Kafka CLI > ";
 
     // Error messages
+    public static final String errGUI = "GUI: ";
+    public static final String errCLI = "CLI: ";
     public static final String errTopicNotFound = "Topic not found";
     public static final String errFileNotFound = "File not found";
     public static final String errInvalidArguments = "Invalid arguments";

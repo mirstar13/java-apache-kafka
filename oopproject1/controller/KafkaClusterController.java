@@ -2,6 +2,8 @@ package oopproject1.controller;
 
 import oopproject1.admin.KafkaBroker;
 import oopproject1.admin.KafkaCluster;
+import oopproject1.admin.KafkaConsumer;
+import oopproject1.admin.KafkaProducer;
 import oopproject1.admin.KafkaTopic;
 import oopproject1.utilities.Globals;
 import oopproject1.view.MainFrame;
@@ -51,5 +53,56 @@ public class KafkaClusterController {
 
     public void insertTopicHandler(String name, int numPartitions, int maxProducers, int maxConsumers, int replicationFactor, boolean keyed) {
         this.cluster.addTopic(name, numPartitions, maxProducers, maxConsumers, replicationFactor, keyed);
+    }
+
+    public void deleteTopicHandler(String topicName) {
+        boolean deleted = this.cluster.deleteTopic(topicName);
+        if (!deleted) {
+            System.out.println(Globals.errGUI + Globals.errTopicNotFound);
+        }
+    }
+
+    public void addProducer(String topicName) {
+        KafkaTopic topic = this.cluster.findTopicByName(topicName);
+
+        if (topic == null) {
+            System.out.println(Globals.errGUI + Globals.errTopicNotFound);
+            return;
+        }
+
+        topic.addProducer(new KafkaProducer(topic));        
+    }
+
+    public void removeProducer(String topicName, int producerIndex) {
+        KafkaTopic topic = this.cluster.findTopicByName(topicName);
+
+        if (topic == null) {
+            System.out.println(Globals.errGUI + Globals.errTopicNotFound);
+            return;
+        }
+
+        topic.removeProducer(producerIndex);
+    }
+
+    public void addConsumer(String topicName) {
+        KafkaTopic topic = this.cluster.findTopicByName(topicName);
+
+        if (topic == null) {
+            System.out.println(Globals.errGUI + Globals.errTopicNotFound);
+            return;
+        }
+
+        topic.addConsumer(new KafkaConsumer(topic));
+    }
+
+    public void removeConsumer(String topicName, int consumerIndex) {
+        KafkaTopic topic = this.cluster.findTopicByName(topicName);
+
+        if (topic == null) {
+            System.out.println(Globals.errGUI + Globals.errTopicNotFound);
+            return;
+        }
+
+        topic.removeConsumer(consumerIndex);
     }
 }

@@ -170,6 +170,29 @@ public class KafkaTopic {
 		producerCount++;
 	}
 
+	public boolean removeProducer(int index) {
+		boolean isDeleted = false;
+		if (index > producerCount) {
+			System.out.println("Invalid producer index");
+			return isDeleted;
+		} else if (index == producerCount) {
+			producers[producerCount] = null;
+			producerCount--;
+			isDeleted = true;
+			return isDeleted;
+		}
+		
+		for (int i = index; i < producerCount ; i++) {
+			producers[i] = producers[i+1];
+		}
+		producers[producerCount] = null;
+		
+		producerCount--;
+
+		isDeleted = true;
+		return isDeleted;
+	}
+
 	public void addConsumer(KafkaConsumer consumer) {
 		if (consumerCount >= maxConsumers) {
 			System.out.println("MAXIMUM NUMBER OF CONSUMERS FOR THIS TOPIC");
@@ -178,6 +201,29 @@ public class KafkaTopic {
 
 		consumers[consumerCount] = consumer;
 		consumerCount++;
+	}
+
+	public boolean removeConsumer(int index) {
+		boolean isDeleted = false;
+		if (index > consumerCount) {
+			System.out.println("Invalid consumer index");
+			return isDeleted;
+		} else if (index == producerCount) {
+			consumers[consumerCount] = null;
+			consumerCount--;
+			isDeleted = true;
+			return isDeleted;
+		}
+		
+		for (int i = index; i < consumerCount ; i++) {
+			consumers[i] = consumers[i+1];
+		}
+		consumers[consumerCount] = null;
+		
+		consumerCount--;
+
+		isDeleted = true;
+		return isDeleted;
 	}
 
 	public void checkValidPositiveInteger(int parameter) {

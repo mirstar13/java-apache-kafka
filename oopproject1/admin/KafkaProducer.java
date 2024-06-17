@@ -17,12 +17,12 @@ public class KafkaProducer extends KafkaClient {
 			int messageCount = this.getTopic().getMessageCount();
 
 			int partionIndex = messageCount % this.getTopic().getPartitions().size();
-			KafkaPartition currePartition = this.getTopic().getPartitions().get(partionIndex);
+			KafkaPartition currentPartition = this.getTopic().getPartitions().get(partionIndex);
 
-			currePartition.getMessageQueue().add(kafkaMessage);
+			currentPartition.getMessageQueue().add(kafkaMessage);
 			this.getTopic().setMessageCount(++messageCount);
 			
-			currePartition.updateReplicaState(kafkaMessage);
+			currentPartition.updateReplicaState(kafkaMessage);
 
 			return;
 		}
