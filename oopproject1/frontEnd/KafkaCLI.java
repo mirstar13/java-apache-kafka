@@ -8,15 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import oopproject1.admin.KafkaBroker;
 import oopproject1.admin.KafkaCluster;
 import oopproject1.admin.KafkaConsumer;
-import oopproject1.admin.KafkaPartition;
 import oopproject1.admin.KafkaProducer;
 import oopproject1.admin.KafkaTopic;
-import oopproject1.commands.CliCommand;
+import oopproject1.frontEnd.commands.CliCommand;
 
 /**
  *

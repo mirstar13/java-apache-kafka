@@ -100,7 +100,7 @@ public class KafkaCluster {
 		}
 	}
 
-	KafkaBroker findBrokerByHostAndPort(String host, int port) {
+	public KafkaBroker findBrokerByHostAndPort(String host, int port) {
 		for (KafkaBroker broker : this.brokers) {
 			if (broker.getHost() == host && broker.getPort() == port)
 				return broker;
@@ -237,8 +237,12 @@ public class KafkaCluster {
 		for (i = 0; i < brokerCount; i++) {
 			KafkaBroker broker = brokers.get(i);
 			if (brokers.get(i) != null) {
-				System.out.println("Broker  " + (i + 1) + " topics:");
 				ArrayList<KafkaTopic> topics = broker.getTopics();
+				if (topics.size() == 0) {
+					continue;
+				}
+
+				System.out.println("Broker  " + (i + 1) + " topics:");
 				for (int j = 0; j < broker.getTopicCount(); j++) {
 					System.out.println("-" + topics.get(j).getName());
 				}
@@ -261,7 +265,7 @@ public class KafkaCluster {
 						System.out.println("  Owner: " + broker.getHost() + ":" + broker.getPort());
 						System.out.println("  Partitions: " + topics.get(n).getPartitions().size());
 						System.out.println("  Replication Factor: " + topics.get(n).getReplicationFactor());
-
+						System.out.println("  Keyed: " + topics.get(n).isKeyed());
 					}
 				}
 			}

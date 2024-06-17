@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import oopproject1.utilities.Globals;
+
 // Container Class that stores the data extracted from the chosen file
 public class RecordsFile {
     private List<String> headers;
@@ -44,18 +46,15 @@ public class RecordsFile {
     }
 
     public static RecordsFile readFile(String fileName) {
-        String workingDirectory = System.getProperty("user.dir");
-        String pathToData = "oopproject1" + File.separator + "data";
-        String absoluteFilePath = "";
-
-        absoluteFilePath = workingDirectory + File.separator + pathToData + File.separator + fileName;
+        String absoluteFilePath = Globals.baseDir + File.separator + Globals.pathToData + File.separator + fileName;
 
         try {
             File dataFile = new File(absoluteFilePath);
             Scanner fileReader = new Scanner(dataFile);
 
             List<String> headersList = new ArrayList<>();
-            String[] headers = fileReader.nextLine().split(",");
+            String regex = "[,\\;]";
+            String[] headers = fileReader.nextLine().split(regex);
 
             for (String header : headers) {
                 headersList.add(header);
@@ -64,11 +63,11 @@ public class RecordsFile {
             List<List<String>> dataTable = new ArrayList<>();
             while (fileReader.hasNextLine()) {
                 String dataLine = fileReader.nextLine();
-                if (dataLine.endsWith(",")) {
+                if (dataLine.endsWith(",") || dataLine.endsWith(";")) {
                     dataLine += "N/A";
                 }
                 
-                String[] spltDataLine = dataLine.split(",");
+                String[] spltDataLine = dataLine.split(regex);
                 List<String> dataList = new ArrayList<>();
                 for (String dat : spltDataLine) {
                     if (dat.equals("")) {
@@ -83,7 +82,7 @@ public class RecordsFile {
             fileReader.close();
             return new RecordsFile(headersList, dataTable);
         } catch (FileNotFoundException e) {
-            System.out.println("File " + absoluteFilePath + " not found");
+            System.out.println(Globals.errFileNotFound + ": " + absoluteFilePath);
             return null;
         }
     }

@@ -17,7 +17,7 @@ public class KafkaTopic {
 	private int consumerCount;
 	private int maxProducers;
 	private int maxConsumers;
-	private int availableMessages;
+	private int messageCount;
 
 	private static final int DEFAULT_REPLICATION_FACTOR = 1;
 	private static final boolean DEFAULT_KEYED = false;
@@ -37,6 +37,7 @@ public class KafkaTopic {
 		this.replicationFactor = replicationFactor;
 		this.keyed = keyed;
 		this.partitionDistribution = distributePartitions(numPartitions, maxConsumers);
+		this.messageCount = 0;
 	}
 
 	// Constructor with default max producers and consumers
@@ -51,6 +52,7 @@ public class KafkaTopic {
 		this.replicationFactor = replicationFactor;
 		this.keyed = keyed;
 		this.partitionDistribution = distributePartitions(numPartitions, this.consumerCount);
+		this.messageCount = 0;
 	}
 
 	// Constructor with default replication factor, keyed, max producers, and max
@@ -67,19 +69,20 @@ public class KafkaTopic {
 		this.keyed = KafkaTopic.DEFAULT_KEYED;
 		this.owner = owner;
 		this.partitionDistribution = distributePartitions(numPartitions, this.consumerCount);
+		this.messageCount = 0;
 	}
 
 	// GETTERS & SETTERS
 
-	public int getAvailableMessages() {
-		return availableMessages;
+	protected int getMessageCount() {
+		return messageCount;
 	}
 
-	private void setAvailableMessage(int availableMessages) {
-		this.availableMessages = availableMessages;
+	protected void setMessageCount(int availableMessages) {
+		this.messageCount = availableMessages;
 	}
 
-	protected List<List<Integer>> getPartitionDistribution() {
+	public List<List<Integer>> getPartitionDistribution() {
 		return partitionDistribution;
 	}
 

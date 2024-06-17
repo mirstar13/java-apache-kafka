@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 public abstract class KafkaMessage {
     private long ingestionTime;
+    private String strMessage;
 
     protected KafkaMessage() {
         this.ingestionTime = System.currentTimeMillis();
@@ -13,6 +14,14 @@ public abstract class KafkaMessage {
 
     public long getIngestionTime() {
         return ingestionTime;
+    }
+
+    public String getStrMessage() {
+        return strMessage;
+    }
+
+    protected void setStrMessage(String strMessage) {
+        this.strMessage = strMessage;
     }
 }
 

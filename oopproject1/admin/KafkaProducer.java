@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KafkaProducer extends KafkaClient {
-	private int messageCount;
-
 	public KafkaProducer(KafkaTopic topic) {
 		super(topic);
-
-		this.messageCount = 0;
 	}
 	
 	// METHODS
@@ -18,9 +14,15 @@ public class KafkaProducer extends KafkaClient {
 	public <K,V> void sendMessage(K key, V value) {
 		if (!this.getTopic().isKeyed()) {
 			KafkaNonKeyedMessage<V> kafkaMessage = new KafkaNonKeyedMessage<V>(value);
+			int messageCount = this.getTopic().getMessageCount();
+
+			int partionIndex = messageCount % this.getTopic().getPartitions().size();
+			KafkaPartition currePartition = this.getTopic().getPartitions().get(partionIndex);
+
+			currePartition.getMessageQueue().add(kafkaMessage);
+			this.getTopic().setMessageCount(++messageCount);
 			
-			this.getTopic().getPartitions().get(messageCount % this.getTopic().getPartitions().size()).getMessageQueue().add(kafkaMessage);
-			messageCount++;
+			currePartition.updateReplicaState(kafkaMessage);
 
 			return;
 		}
@@ -28,7 +30,12 @@ public class KafkaProducer extends KafkaClient {
 		KafkaKeyedMessage<K,V> kafkaMessage = new KafkaKeyedMessage<K,V>(key, value);
 
 		String strKey = (String) key;
-		this.getTopic().getPartitions().get(hash(strKey, this.getTopic().getPartitions().size())).getMessageQueue().add(kafkaMessage);
+		int partitionIndex = hash(strKey, this.getTopic().getPartitions().size());
+		
+		KafkaPartition currePartition = this.getTopic().getPartitions().get(partitionIndex);
+		currePartition.getMessageQueue().add(kafkaMessage);
+
+		currePartition.updateReplicaState(kafkaMessage);
 	}
 
 	@Override

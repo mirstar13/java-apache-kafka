@@ -1,4 +1,4 @@
-package oopproject1.commands;
+package oopproject1.frontEnd.commands;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +36,7 @@ public abstract class CliCommand {
         m.put("insert", new CommandInsert());
         m.put("test", new CommandTest());
         m.put("complete", new CommandComplete());
+        m.put("show", new CommandShow());
 
         return m;
     }

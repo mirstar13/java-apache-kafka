@@ -1,4 +1,4 @@
-package oopproject1.commands;
+package oopproject1.frontEnd.commands;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ public class CommandComplete extends CliCommand {
         super("complete", "Completes the data insertion preccess and initiates the message reading proccess.");
     }
 
+    @Override
     public void callback(KafkaCluster kafkaCluster, List<String> params) {
         System.out.println("Starting to read messages");
 
@@ -27,5 +28,16 @@ public class CommandComplete extends CliCommand {
         }
 
         System.out.println("Finished reading messages");
+
+        int consumerCount = 0;
+        for (KafkaBroker broker : brokers) {
+            List<KafkaTopic> topics = broker.getTopics();
+            for (KafkaTopic topic : topics) {
+                KafkaConsumer[] currentConsumers = topic.getConsumers();
+                for (int i = 0; i < currentConsumers.length; i++) {
+                    currentConsumers[i].writeMessageStackToFile("consumer_" + consumerCount++);;
+                }
+            }
+        }
     }
 }

@@ -49,4 +49,18 @@ public class KafkaPartition {
 	private void setReplicas(ArrayList<KafkaReplica> replicas) {
 		this.replicas = replicas;
 	}
+
+	// METHODS
+
+	protected void updateReplicaState() {
+		for (KafkaReplica replica : replicas) {
+			replica.incrementOffset();
+		}
+	}
+
+	protected void updateReplicaState(KafkaMessage message) {
+		for (KafkaReplica replica : replicas) {
+			replica.addMessage(message);;
+		}
+	}
 }

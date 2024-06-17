@@ -1,4 +1,4 @@
-package oopproject1.commands;
+package oopproject1.frontEnd.commands;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import oopproject1.admin.KafkaCluster;
 
 public class CommandHelp extends CliCommand {
-    public CommandHelp() {
+    protected CommandHelp() {
         super("help", "Displays this help message");
     }
 
