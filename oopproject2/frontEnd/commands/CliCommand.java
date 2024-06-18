@@ -1,9 +1,9 @@
-package oopproject1.frontEnd.commands;
+package oopproject2.frontEnd.commands;
 
 import java.util.HashMap;
 import java.util.List;
 
-import oopproject1.admin.KafkaCluster;
+import oopproject2.admin.KafkaCluster;
 
 public abstract class CliCommand {
     private String name;

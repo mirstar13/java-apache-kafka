@@ -1,4 +1,4 @@
-package oopproject1.data;
+package oopproject2.data;
 
 import java.util.NoSuchElementException;
 

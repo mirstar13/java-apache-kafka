@@ -1,12 +1,12 @@
-package oopproject1.frontEnd.commands;
+package oopproject2.frontEnd.commands;
 
 import java.util.List;
 
-import oopproject1.admin.KafkaCluster;
-import oopproject1.admin.KafkaProducer;
-import oopproject1.admin.KafkaTopic;
-import oopproject1.data.RecordsFile;
-import oopproject1.utilities.Globals;
+import oopproject2.admin.KafkaCluster;
+import oopproject2.admin.KafkaProducer;
+import oopproject2.admin.KafkaTopic;
+import oopproject2.data.RecordsFile;
+import oopproject2.utilities.Globals;
 
 public class CommandInsert extends CliCommand {
     protected CommandInsert() {

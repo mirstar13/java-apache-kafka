@@ -1,4 +1,4 @@
-package oopproject1.admin;
+package oopproject2.admin;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import oopproject1.data.LinkedStack;
+import oopproject2.data.LinkedStack;
 
 public class KafkaConsumer extends KafkaClient {
 	private LinkedStack<KafkaMessage> messageStack;

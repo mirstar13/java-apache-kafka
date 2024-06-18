@@ -1,11 +1,11 @@
-package oopproject1.frontEnd.commands;
+package oopproject2.frontEnd.commands;
 
 import java.util.List;
 
-import oopproject1.admin.KafkaBroker;
-import oopproject1.admin.KafkaCluster;
-import oopproject1.admin.KafkaConsumer;
-import oopproject1.admin.KafkaTopic;
+import oopproject2.admin.KafkaBroker;
+import oopproject2.admin.KafkaCluster;
+import oopproject2.admin.KafkaConsumer;
+import oopproject2.admin.KafkaTopic;
 
 public class CommandComplete extends CliCommand {
     protected CommandComplete() {

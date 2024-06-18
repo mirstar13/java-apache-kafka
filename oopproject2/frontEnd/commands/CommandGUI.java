@@ -1,9 +1,9 @@
-package oopproject1.frontEnd.commands;
+package oopproject2.frontEnd.commands;
 
 import java.util.List;
 
-import oopproject1.admin.KafkaCluster;
-import oopproject1.controller.KafkaClusterController;
+import oopproject2.admin.KafkaCluster;
+import oopproject2.controller.KafkaClusterController;
 
 public class CommandGUI extends CliCommand {
     protected CommandGUI() {

@@ -1,8 +1,8 @@
-package oopproject1.frontEnd.commands;
+package oopproject2.frontEnd.commands;
 
 import java.util.List;
 
-import oopproject1.admin.KafkaCluster;
+import oopproject2.admin.KafkaCluster;
 
 public class CommandShow extends CliCommand {
     protected CommandShow() {

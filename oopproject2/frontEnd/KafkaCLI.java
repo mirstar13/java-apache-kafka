@@ -2,18 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package oopproject1.frontEnd;
+package oopproject2.frontEnd;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-import oopproject1.admin.KafkaBroker;
-import oopproject1.admin.KafkaCluster;
-import oopproject1.admin.KafkaConsumer;
-import oopproject1.admin.KafkaProducer;
-import oopproject1.admin.KafkaTopic;
-import oopproject1.frontEnd.commands.CliCommand;
+
+import oopproject2.admin.KafkaBroker;
+import oopproject2.admin.KafkaCluster;
+import oopproject2.admin.KafkaConsumer;
+import oopproject2.admin.KafkaProducer;
+import oopproject2.admin.KafkaTopic;
+import oopproject2.frontEnd.commands.CliCommand;
 
 /**
  *

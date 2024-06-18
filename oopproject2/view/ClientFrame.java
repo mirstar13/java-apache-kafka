@@ -1,4 +1,4 @@
-package oopproject1.view;
+package oopproject2.view;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,11 +19,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import oopproject1.admin.KafkaClient;
-import oopproject1.admin.KafkaProducer;
-import oopproject1.admin.KafkaTopic;
-import oopproject1.controller.KafkaClusterController;
-import oopproject1.utilities.Globals;
+import oopproject2.admin.KafkaClient;
+import oopproject2.admin.KafkaProducer;
+import oopproject2.admin.KafkaTopic;
+import oopproject2.controller.KafkaClusterController;
+import oopproject2.utilities.Globals;
 
 public class ClientFrame extends JFrame {
     JFrame callingFrame;

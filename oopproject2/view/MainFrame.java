@@ -1,6 +1,5 @@
-package oopproject1.view;
+package oopproject2.view;
 
-import oopproject1.controller.KafkaClusterController;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import oopproject2.controller.KafkaClusterController;
 
 import java.awt.Dimension;
 import java.awt.GridBagLayout;

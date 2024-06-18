@@ -1,10 +1,10 @@
-package oopproject1.frontEnd.commands;
+package oopproject2.frontEnd.commands;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import oopproject1.admin.KafkaCluster;
+import oopproject2.admin.KafkaCluster;
 
 public class CommandTest extends CliCommand {
     protected CommandTest() {

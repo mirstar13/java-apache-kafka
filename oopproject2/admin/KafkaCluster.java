@@ -1,12 +1,12 @@
-package oopproject1.admin;
+package oopproject2.admin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import oopproject1.data.RecordsFile;
-import oopproject1.frontEnd.commands.CliCommand;
+import oopproject2.data.RecordsFile;
+import oopproject2.frontEnd.commands.CliCommand;
 
 public class KafkaCluster {
 

@@ -1,4 +1,4 @@
-package oopproject1.admin;
+package oopproject2.admin;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;

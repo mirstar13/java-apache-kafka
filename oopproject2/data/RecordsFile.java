@@ -1,4 +1,4 @@
-package oopproject1.data;
+package oopproject2.data;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import oopproject1.utilities.Globals;
+import oopproject2.utilities.Globals;
 
 // Container Class that stores the data extracted from the chosen file
 public class RecordsFile {

@@ -1,4 +1,4 @@
-package oopproject1.admin;
+package oopproject2.admin;
 
 public class KafkaKeyedMessage<K, V> extends KafkaMessage {
     private K key;

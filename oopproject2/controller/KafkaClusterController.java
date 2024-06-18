@@ -1,15 +1,15 @@
-package oopproject1.controller;
+package oopproject2.controller;
 
 import java.util.List;
 
-import oopproject1.admin.KafkaBroker;
-import oopproject1.admin.KafkaClient;
-import oopproject1.admin.KafkaCluster;
-import oopproject1.admin.KafkaConsumer;
-import oopproject1.admin.KafkaProducer;
-import oopproject1.admin.KafkaTopic;
-import oopproject1.utilities.Globals;
-import oopproject1.view.MainFrame;
+import oopproject2.admin.KafkaBroker;
+import oopproject2.admin.KafkaClient;
+import oopproject2.admin.KafkaCluster;
+import oopproject2.admin.KafkaConsumer;
+import oopproject2.admin.KafkaProducer;
+import oopproject2.admin.KafkaTopic;
+import oopproject2.utilities.Globals;
+import oopproject2.view.MainFrame;
 
 public class KafkaClusterController {
     KafkaCluster cluster;
