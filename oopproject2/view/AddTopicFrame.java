@@ -274,7 +274,7 @@ public class AddTopicFrame extends JFrame {
                 return;
             }
 
-            KafkaTopic newTopic = controller.insertTopicHandler(this.topicNameLabel.getText(), numPartitions,
+            KafkaTopic newTopic = controller.insertTopicHandler(this.topicNameTxtField.getText(), numPartitions,
                     maxProducers, maxConsumers,
                     replicationsFactor, this.isKeyed);
 

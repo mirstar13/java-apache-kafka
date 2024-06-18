@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import oopproject2.admin.KafkaCluster;
+import oopproject2.utilities.Globals;
 
 public class CommandHelp extends CliCommand {
     protected CommandHelp() {
-        super("help", "Displays this help message");
+        super("help", Globals.commandHelpDescription);
     }
 
     @Override

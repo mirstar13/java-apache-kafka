@@ -17,7 +17,7 @@ public class CommandInsert extends CliCommand {
     @Override
     public void callback(KafkaCluster cluster, List<String> params) {
         if (params.size() < 2) {
-            System.out.println(getName() + ": " + Globals.errInvalidArguments);
+            System.out.println(getName() + Globals.messageSeperator + Globals.errInvalidArguments);
             return;
         }
 
@@ -39,7 +39,7 @@ public class CommandInsert extends CliCommand {
         String keyColumn = "";
         if (topic.isKeyed()) {
             if (params.size() < 3) {
-                System.out.println(getName() + ": " + Globals.errInvalidArguments + ": " + "you must specify the name of the key column for keyed topics");
+                System.out.println(getName() + Globals.messageSeperator + Globals.errInvalidArguments + Globals.messageSeperator + "you must specify the name of the key column for keyed topics");
                 return;
             }
 

@@ -55,6 +55,7 @@ public class TopicFrame extends JFrame {
     private JButton deleteTopicBttn;
     private JButton deleteProducerBttn;
     private JButton deleteConsumerBttn;
+    private JButton refreshBttn;
 
     public TopicFrame(JFrame callingFrame, KafkaClusterController controller) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -96,6 +97,7 @@ public class TopicFrame extends JFrame {
         deleteTopicBttn = new JButton();
         deleteProducerBttn = new JButton();
         deleteConsumerBttn = new JButton();
+        refreshBttn = new JButton();
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new GridBagLayout());
@@ -164,6 +166,13 @@ public class TopicFrame extends JFrame {
             }
         });
 
+        refreshBttn.setText("Refresh Topics List");
+        refreshBttn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                refreshBttnActionPerformed();
+            }
+        });
+
         topicLabel.setFont(new Font("Segoe UI", 1, 12));
         topicLabel.setText("Topics:");
 
@@ -195,6 +204,7 @@ public class TopicFrame extends JFrame {
                                                 .addComponent(topicScrollPane)
                                                 .addGroup(layout.createParallelGroup()
                                                         .addComponent(addTopicBttn)
+                                                        .addComponent(refreshBttn)
                                                         .addComponent(deleteTopicBttn)
                                                         .addComponent(inspectTopicBttn))
                                                 .addComponent(producerScrollPane)
@@ -217,8 +227,9 @@ public class TopicFrame extends JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(topicScrollPane)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(35, 35, 35)
+                                                .addGap(25, 25, 25)
                                                 .addComponent(addTopicBttn)
+                                                .addComponent(refreshBttn)
                                                 .addComponent(inspectTopicBttn)
                                                 .addComponent(deleteTopicBttn))
                                         .addComponent(producerScrollPane)
@@ -383,5 +394,10 @@ public class TopicFrame extends JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, Globals.errNothingIsSelected, "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void refreshBttnActionPerformed() {
+        this.topicListModel.clear();
+        this.topicListModel.addAll(this.controller.getAllTopics());
     }
 }

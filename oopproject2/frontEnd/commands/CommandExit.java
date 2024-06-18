@@ -3,10 +3,11 @@ package oopproject2.frontEnd.commands;
 import java.util.List;
 
 import oopproject2.admin.KafkaCluster;
+import oopproject2.utilities.Globals;
 
 public class CommandExit extends CliCommand {
     protected CommandExit() {
-        super("exit", "Exits the app");
+        super("exit", Globals.commandExitDescription);
     }
 
     @Override

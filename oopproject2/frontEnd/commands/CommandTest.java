@@ -5,10 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import oopproject2.admin.KafkaCluster;
+import oopproject2.utilities.Globals;
 
 public class CommandTest extends CliCommand {
     protected CommandTest() {
-        super("test", "debug test");
+        super("test", Globals.commadnTestDescription);
     }
 
     public void callback(KafkaCluster cluster, List<String> params) {

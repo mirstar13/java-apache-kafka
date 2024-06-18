@@ -46,6 +46,7 @@ public class BrokerFrame extends JFrame {
     private JButton addBrokerBttn;
     private JButton updateBrokerBttn;
     private JButton deleteBrokerBttn;
+    private JButton refreshBttn;
 
     public BrokerFrame(JFrame callingFrame, KafkaClusterController controller) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -80,6 +81,7 @@ public class BrokerFrame extends JFrame {
         addBrokerBttn = new JButton();
         updateBrokerBttn = new JButton();
         deleteBrokerBttn = new JButton();
+        refreshBttn = new JButton();
 
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new GridBagLayout());
@@ -104,7 +106,7 @@ public class BrokerFrame extends JFrame {
 
         inspectBttn.setText("Inspect Broker");
         inspectBttn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt){
+            public void actionPerformed(ActionEvent evt) {
                 inspectBttnActionPerformed(evt);
             }
         });
@@ -130,6 +132,13 @@ public class BrokerFrame extends JFrame {
             }
         });
 
+        refreshBttn.setText("Refresh Brokers List");
+        refreshBttn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                refreshBttnActionPerformed(evt);
+            }
+        });
+
         JPanel gui = new JPanel();
 
         GroupLayout layout = new GroupLayout(gui);
@@ -150,6 +159,7 @@ public class BrokerFrame extends JFrame {
                                                 .addGroup(layout.createParallelGroup()
                                                         .addComponent(inspectBttn)
                                                         .addComponent(addBrokerBttn)
+                                                        .addComponent(refreshBttn)
                                                         .addComponent(updateBrokerBttn)
                                                         .addComponent(deleteBrokerBttn))
                                                 .addComponent(topicScrollPane)))));
@@ -163,9 +173,10 @@ public class BrokerFrame extends JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(brokerScrollPane)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(25, 25, 25)
+                                                .addGap(13, 13, 13)
                                                 .addComponent(inspectBttn)
                                                 .addComponent(addBrokerBttn)
+                                                .addComponent(refreshBttn)
                                                 .addComponent(updateBrokerBttn)
                                                 .addComponent(deleteBrokerBttn))
                                         .addComponent(topicScrollPane))));
@@ -223,12 +234,18 @@ public class BrokerFrame extends JFrame {
 
             this.controller.deleteBrokerHandler(selectedBroker.getHost(), selectedBroker.getPort());
 
-            JOptionPane.showMessageDialog(this, Globals.respDeletedSuccessfully, "Info", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, Globals.respDeletedSuccessfully, "Info",
+                    JOptionPane.INFORMATION_MESSAGE);
 
             this.brokerListModel.clear();
             this.brokerListModel.addAll(controller.getAllBrokers());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, Globals.errNothingIsSelected, "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void refreshBttnActionPerformed(ActionEvent evt) {
+        this.brokerListModel.clear();
+        this.brokerListModel.addAll(this.controller.getAllBrokers());
     }
 }

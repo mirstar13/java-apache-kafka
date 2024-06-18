@@ -6,10 +6,11 @@ import oopproject2.admin.KafkaBroker;
 import oopproject2.admin.KafkaCluster;
 import oopproject2.admin.KafkaConsumer;
 import oopproject2.admin.KafkaTopic;
+import oopproject2.utilities.Globals;
 
 public class CommandComplete extends CliCommand {
     protected CommandComplete() {
-        super("complete", "Completes the data insertion preccess and initiates the message reading proccess.");
+        super("complete", Globals.commandCompleteDescription);
     }
 
     @Override

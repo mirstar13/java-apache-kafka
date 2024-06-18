@@ -15,6 +15,7 @@ import oopproject2.admin.KafkaConsumer;
 import oopproject2.admin.KafkaProducer;
 import oopproject2.admin.KafkaTopic;
 import oopproject2.frontEnd.commands.CliCommand;
+import oopproject2.utilities.Globals;
 
 /**
  *
@@ -25,7 +26,7 @@ public class KafkaCLI {
         KafkaCluster kafkaCluster = init();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Apache Kafka > ");
+        System.out.print(Globals.cliPrompt);
 
         while (true) {
             String[] spltAdminInput = scanner.nextLine().trim().split(" ");
@@ -33,7 +34,7 @@ public class KafkaCLI {
             String command = spltAdminInput[0];
 
             if (command.equals("")) {
-                System.out.print("Apache Kafka > ");
+                System.out.print(Globals.cliPrompt);
                 
                 continue;
             }
@@ -55,11 +56,11 @@ public class KafkaCLI {
                     cmd.callback(kafkaCluster, params);
                 } else {
                     cmd.callback(kafkaCluster, params);
-                    System.out.print("Apache Kafka > ");
+                    System.out.print(Globals.cliPrompt);
                 }
             } else {
                 System.out.println(command + ": Unknown command");
-                System.out.print("Apache Kafka > ");
+                System.out.print(Globals.cliPrompt);
             }
 
         }

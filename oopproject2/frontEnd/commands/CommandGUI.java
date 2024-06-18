@@ -4,11 +4,11 @@ import java.util.List;
 
 import oopproject2.admin.KafkaCluster;
 import oopproject2.controller.KafkaClusterController;
+import oopproject2.utilities.Globals;
 
 public class CommandGUI extends CliCommand {
     protected CommandGUI() {
-        super("gui",
-                "Opens the user interface.\n\tUsage: gui <new_cluster> <max_brokers> <max_topics_per_broker>. Arguments are optional.\n\tIf you use new_cluster a new KafkaCLuster will be initialized for the gui.\n\tIf <max_brokers> or <max_topics_per_broker>, are set to 0, then their default values will be used.\n\tIf <max_topics_per_broker> or both <max_brokers> and <max_topics_per_broker> are left empty, their default values will be used");
+        super("gui", Globals.commandGUIDesciption);
     }
 
     @Override

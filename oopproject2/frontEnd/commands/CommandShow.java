@@ -3,11 +3,11 @@ package oopproject2.frontEnd.commands;
 import java.util.List;
 
 import oopproject2.admin.KafkaCluster;
+import oopproject2.utilities.Globals;
 
 public class CommandShow extends CliCommand {
     protected CommandShow() {
-        super("show",
-                "Prints available topics.\n\tUsage: show <include_details>.\n\tUse with include details to print an extensive description of each topic");
+        super("show", Globals.commandShowDescription);
     }
 
     public void callback(KafkaCluster cluster, List<String> params) {
