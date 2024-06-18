@@ -9,15 +9,18 @@ public class KafkaKeyedMessage<K, V> extends KafkaMessage {
 
         this.key = key;
         this.value = value;
-
-        if (key.equals("key")) {
-            this.setStrMessage("ingestion_time = " + this.getIngestionTime() + " | " + value);
-        } else {
-            this.setStrMessage("ingestion_time = " + this.getIngestionTime() + " | " + "key = " + key + " | " + value);
-        }
     }
 
     // GETTERS AND SETTERS
+
+    @Override
+    public String toString() {
+        if (key.equals("key")) {
+            return "id = " + this.getMessageId() + " | " + "ingestion_time = " + this.getIngestionTime() + " | " + value;
+        } else {
+            return "id = " + this.getMessageId() + " | " + "ingestion_time = " + this.getIngestionTime() + " | " + "key = " + key + " | " + value;
+        }
+    }
 
     protected K getKey() {
         return key;

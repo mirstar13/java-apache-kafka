@@ -1,13 +1,15 @@
 package oopproject2.admin;
 
 import java.util.Comparator;
+import java.util.UUID;
 
 public abstract class KafkaMessage {
     private long ingestionTime;
-    private String strMessage;
+    private UUID messageId;
 
     protected KafkaMessage() {
         this.ingestionTime = System.currentTimeMillis();
+        this.messageId = UUID.randomUUID();
     }
 
     // GETTERS
@@ -16,12 +18,8 @@ public abstract class KafkaMessage {
         return ingestionTime;
     }
 
-    public String getStrMessage() {
-        return strMessage;
-    }
-
-    protected void setStrMessage(String strMessage) {
-        this.strMessage = strMessage;
+    public UUID getMessageId() {
+        return messageId;
     }
 }
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import oopproject2.data.LinkedStack;
+import oopproject2.utilities.Globals;
 
 public class KafkaConsumer extends KafkaClient {
 	private LinkedStack<KafkaMessage> messageStack;
@@ -18,6 +19,11 @@ public class KafkaConsumer extends KafkaClient {
 	}
 
 	// METHODS
+
+	@Override
+	public String toString() {
+		return this.getTopic().toString() + ":" + "Consumer:" + this.getId() ;
+	}
 
 	@Override
 	public <K, V> void sendMessage(K key, V value) {
@@ -73,11 +79,7 @@ public class KafkaConsumer extends KafkaClient {
 			return;
 		}
 
-		String workingDirectory = System.getProperty("user.dir");
-		String pathToData = "oopproject1" + File.separator + "data" + File.separator + "consumer_messages";
-		String absoluteFilePath;
-
-		absoluteFilePath = workingDirectory + File.separator + pathToData + File.separator + fileName;
+		String absoluteFilePath = Globals.baseDir + File.separator + Globals.pathToData + File.separator + Globals.pathToConsumerMessages + File.separator + fileName;
 
 		try {
 			File messagesFile = new File(absoluteFilePath);
@@ -86,7 +88,7 @@ public class KafkaConsumer extends KafkaClient {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(messagesFile));
 
 			while (!messageStack.isEmpty()) {
-				writer.write(messageStack.pop().getStrMessage());
+				writer.write(messageStack.pop().toString());
 			}
 
 			writer.close();

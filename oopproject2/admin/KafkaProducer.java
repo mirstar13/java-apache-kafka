@@ -3,12 +3,17 @@ package oopproject2.admin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KafkaProducer extends KafkaClient {
+public class KafkaProducer extends KafkaClient {	
 	public KafkaProducer(KafkaTopic topic) {
 		super(topic);
 	}
 	
 	// METHODS
+
+	@Override
+	public String toString() {
+		return this.getTopic().toString() + ":" + "Producer:" + this.getId();
+	}
 
 	@Override
 	public <K,V> void sendMessage(K key, V value) {

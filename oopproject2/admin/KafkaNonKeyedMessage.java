@@ -7,10 +7,14 @@ public class KafkaNonKeyedMessage<V> extends KafkaMessage {
         super();    
         this.value = value;
 
-        this.setStrMessage("ingestion_time = " + this.getIngestionTime() + " | " + value);
     }
     
     // GETTERS AND SETTERS
+
+    @Override
+    public String toString() {
+        return "id = " + this.getMessageId() + " | " + "ingestion_time = " + this.getIngestionTime() + " | " + value;
+    }
 
     protected V getValue(){
         return value;

@@ -3,8 +3,9 @@ package oopproject2.utilities;
 import java.io.File;
 
 public class Globals {
-    public static final String baseDir = System.getProperty("user.dir") + File.separator;
-    public static final String pathToData = "oopproject1" + File.separator + "data";
+    public static final String baseDir = System.getProperty("user.dir");
+    public static final String pathToData = "oopproject2" + File.separator + "data";
+    public static final String pathToConsumerMessages = "consumer_messages";
 
     public static final String cliPrompt = "Apache Kafka CLI > ";
 
